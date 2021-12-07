@@ -5,11 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Drummer List of Reservations</title>
+    <style>
+      body {
+        margin-top: 100px;
+      }
+      .name {
+        font-size: 30px;
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
   </head>
   <body>
     <% reservationList.forEach((element) => { %>
-    <div><%= element.date %></div>
-    <% });%>
-    <button><a href="/">Home</a></button>
+    <div class="name">
+      <%= element.date %> <% });%>
+      <div>
+        <button><a href="/">Home</a></button>
+      </div>
+    </div>
   </body>
 </html>

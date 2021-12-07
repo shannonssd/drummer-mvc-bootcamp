@@ -6,7 +6,8 @@
         height: 100vh;
       }
       .name {
-        font-size: 40px;
+        font-size: 30px;
+        font-family: sans-serif;
         font-weight: bold;
         display: flex;
         flex-direction: column;
@@ -23,17 +24,23 @@
   <body>
     <div class="name">
       <%= user.name %>
+      <br />
+      <br />
       <div>
+        <div>This 'Drummer' charges:<%= user.gig_price %></div>
+        <br />
+        <div>
+          View <%= user.name %>'s
+          <a href="/reservations/<%= user.id %>">BOOKINGS</a>
+        </div>
+        <br />
         <form action="/reservation/<%= user.id %>" method="POST">
           <label for="date"></label>
           <input type="date" id="date" name="date" />
           <input type="submit" value="Click here to make a resevation" />
         </form>
       </div>
-      <div>
-        View list of <%= user.name %>'s
-        <a href="/reservations/<%= user.id %>">BOOKINGS</a>
-      </div>
+      <br />
       <button><a href="/">Home</a></button>
     </div>
   </body>
