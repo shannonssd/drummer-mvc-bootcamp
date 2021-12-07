@@ -1,17 +1,26 @@
-import { Sequelize } from 'sequelize';
+import sequelizePackage from 'sequelize';
 import allConfig from '../config/config.js';
 
-import initItemModel from './item.mjs';
+import initUserModel from './user.mjs';
+import initReservationModel from './reservation.mjs';
 
+const { Sequelize } = sequelizePackage;
 const env = process.env.NODE_ENV || 'development';
-
 const config = allConfig[env];
-
 const db = {};
 
-let sequelize = new Sequelize(config.database, config.username, config.password, config);
+const sequelize = new Sequelize(
+  config.database,
+  config.username,
+  config.password,
+  config,
+);
 
-// add your model definitions to db here
+db.User = initUserModel(sequelize, Sequelize.DataTypes);
+db.Reservation = initReservationModel(sequelize, Sequelize.DataTypes);
+
+db.Reservation.belongsTo(db.User);
+db.User.hasMany(db.Reservation);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
